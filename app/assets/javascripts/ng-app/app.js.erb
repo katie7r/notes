@@ -1,0 +1,28 @@
+(function() {
+    'use strict';
+
+    angular
+        .module('app', [
+          'ui.router',
+          'rails'
+          // 'ngStorage',
+        ])
+        .config(config);
+
+        config.$inject = ['$stateProvider', '$urlRouterProvider', 'railsSerializerProvider'];
+
+        function config($stateProvider, $urlRouterProvider, railsSerializerProvider) {
+          railsSerializerProvider.underscore(angular.identity).camelize(angular.identity);
+
+          $urlRouterProvider.otherwise("/notes");
+          $stateProvider
+            .state('notes', {
+              url: "/notes",
+              templateUrl: "<%= asset_path('pages/notes.html.slim') %>",
+              // controller: "NotesController",
+              // controllerAs: "notes"
+            }
+          );
+        }
+
+})();

@@ -1,0 +1,11 @@
+/ div
+div(ng-controller="NotesController as notes")
+  #new
+    
+  ul#index
+    li(ng-repeat="note in notes.all")
+      .note
+        h2 {{ note.title }}
+        h3 {{ note.category }}
+        small {{ note.details }}
+        p {{ note.text }}
