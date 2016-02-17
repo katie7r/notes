@@ -21,12 +21,10 @@
           }
 
           function create(note) {
-            return new NoteService(note).$save();
+            new NoteService(note).$save().then(function(note) {
+              vm.all.push(note);
+            });
           }
-          // function create(noteData) {
-          //   var note = new NoteService(noteData);
-          //   return note.$save();
-          // }
 
           function update(note) {
             return NoteService.update({ id: note.id }, note);

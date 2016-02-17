@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string           not null
-#  text       :string           not null
+#  text       :text             not null
 #  details    :string
 #  category   :string
 #  user_id    :integer
@@ -13,4 +13,5 @@
 #
 
 class Note < ActiveRecord::Base
+  belongs_to :user
 end

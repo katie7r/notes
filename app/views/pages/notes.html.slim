@@ -1,6 +1,20 @@
 / div
 div(ng-controller="NotesController as notes")
-  #new
+  form#new
+    label(for="title") Title (required)
+    input(ng-model="newNote.title" ng-required="true" name="title" type="text")
+
+    label(for="category") Category (optional)
+    input(ng-model="newNote.category" ng-required="false" name="category" type="text")
+
+    label(for="details") Details (optional)
+    input(ng-model="newNote.details" ng-required="false" name="details" type="text")
+
+    label(for="text") Text (required)
+    textarea(ng-model="newNote.text" ng-required="true" name="text" type="text")
+
+    input(ng-click="notes.create(newNote)" type="submit")
+
     
   ul#index
     li(ng-repeat="note in notes.all")
