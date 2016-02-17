@@ -9,41 +9,40 @@
 
         function NotesController(NoteService) {
           var vm = this;
-          vm.all = all;
+          vm.index = index;
           vm.create = create;
           vm.update = update;
           vm.destroy = destroy;
 
-          function all() {
-            NoteService.query().then(function(response) {
-              console.log(response);
-              return response;
-            });
+          vm.all = vm.index();
+
+          function index() {
+            return NoteService.query();
           }
 
           function create(note) {
-            new NoteService(note).create().then(function(response) {
-              console.log('Created note.');
-              console.log(response);
-              // add note to notes
-            });
+            return new NoteService(note).$save();
           }
+          // function create(noteData) {
+          //   var note = new NoteService(noteData);
+          //   return note.$save();
+          // }
 
           function update(note) {
-            new NoteService(note).update().then(function(response) {
-              console.log('Updated note.');
-              console.log(response);
-              // update note in notes
-            });
+            return NoteService.update({ id: note.id }, note);
           }
+          // function update(noteData) {
+          //   var note = new NoteService(noteData);
+          //   return NoteService.update({ id: note.id }, note);
+          // }
 
           function destroy(note) {
-            new NoteService(note).delete().then(function(response) {
-              console.log('Destroyed note.');
-              console.log(response);
-              // remove note from notes
-            });
+            return NoteService(note).delete({ id: note.id });
           }
+          // function destroy(noteData) {
+          //   var note = new NoteService(noteData);
+          //   return NoteService(note).delete({ id: note.id });
+          // }
         }
 
 })();

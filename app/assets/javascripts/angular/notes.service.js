@@ -5,12 +5,12 @@
         .module('app')
         .factory('NoteService', NoteService);
 
-        NoteService.$inject = ['railsResourceFactory'];
+        NoteService.$inject = ['$resource'];
 
-        function NoteService(railsResourceFactory) {
-          return railsResourceFactory({
-            url: '/notes',
-            name: 'note'
+        function NoteService($resource) {
+          return $resource('/notes/:noteId', { noteId: '@id' },
+          {
+            'update': { method: 'PUT' }
           });
         }
 

@@ -4,15 +4,15 @@
     angular
         .module('app', [
           'ui.router',
-          'rails'
+          'ngResource'
           // 'ngStorage',
         ])
         .config(config);
 
-        config.$inject = ['$stateProvider', '$urlRouterProvider', 'railsSerializerProvider'];
+        config.$inject = ['$stateProvider', '$urlRouterProvider', '$resourceProvider'];
 
-        function config($stateProvider, $urlRouterProvider, railsSerializerProvider) {
-          railsSerializerProvider.underscore(angular.identity).camelize(angular.identity);
+        function config($stateProvider, $urlRouterProvider, $resourceProvider) {
+          $resourceProvider.defaults.stripTrailingSlashes = false;
 
           $urlRouterProvider.otherwise("/notes");
           $stateProvider

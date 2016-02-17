@@ -10,9 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular
-//= require angular-ui-router
-//= require angularjs/rails/resource
+//= require angular/angular
+//= require angular-ui-router/release/angular-ui-router
+//= require angular-resource/angular-resource
+//= require angularjs-rails-resource/angularjs-rails-resource
 //= require angular/app.js.erb
 //= require angular/notes.controller.js
 //= require angular/notes.service.js

@@ -40,9 +40,6 @@ GEM
     airbrake (4.3.5)
       builder
       multi_json
-    angular-ui-router-rails (0.2.15)
-    angularjs-rails (1.5.0)
-    angularjs-rails-resource (2.0.0)
     annotate (2.7.0)
       activerecord (>= 3.2, < 6.0)
       rake (~> 10.4)
@@ -56,6 +53,7 @@ GEM
     bourbon (4.2.6)
       sass (~> 3.4)
       thor (~> 0.19)
+    bower-rails (0.10.0)
     builder (3.2.2)
     bundler-audit (0.4.0)
       bundler (~> 1.2)
@@ -294,13 +292,11 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake (~> 4)
-  angular-ui-router-rails
-  angularjs-rails
-  angularjs-rails-resource (~> 2.0.0)
   annotate
   autoprefixer-rails
   awesome_print
   bourbon (~> 4.2.0)
+  bower-rails
   bundler-audit
   byebug
   capybara-webkit
