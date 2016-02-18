@@ -1,25 +1,39 @@
-/ div
 div(ng-controller="NotesController as notes")
-  form#new
-    label(for="title") Title (required)
-    input(ng-model="newNote.title" ng-required="true" name="title" type="text")
+  h1 Notes
 
-    label(for="category") Category (optional)
-    input(ng-model="newNote.category" ng-required="false" name="category" type="text")
+  #new
+    h2 New Note
+    note-form(note="newNote")
+      input(ng-click="notes.create(newNote)" type="submit")
 
-    label(for="details") Details (optional)
-    input(ng-model="newNote.details" ng-required="false" name="details" type="text")
-
-    label(for="text") Text (required)
-    textarea(ng-model="newNote.text" ng-required="true" name="text" type="text")
-
-    input(ng-click="notes.create(newNote)" type="submit")
-
+    / label(for="title") Title (required)
+    / input(ng-model="newNote.title" ng-required="true" name="title" type="text")
+    / 
+    / label(for="category") Category (optional)
+    / input(ng-model="newNote.category" ng-required="false" name="category" type="text")
+    / 
+    / label(for="details") Details (optional)
+    / input(ng-model="newNote.details" ng-required="false" name="details" type="text")
+    / 
+    / label(for="text") Text (required)
+    / textarea(ng-model="newNote.text" ng-required="true" name="text" type="text")
+    / 
+    / input(ng-click="notes.create(newNote)" type="submit")
     
   ul#index
-    li(ng-repeat="note in notes.all")
-      .note
-        h2 {{ note.title }}
-        h3 {{ note.category }}
-        small {{ note.details }}
-        p {{ note.text }}
+    li.note.flexbox(ng-repeat="note in notes.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
+
+        .show(ng-show="!editing")
+          hgroup
+            h2 {{ note.title }}
+            h3 {{ note.category }}
+            small {{ note.details }}
+          p {{ note.text }}
+
+        .edit(ng-show="editing")
+          h2 Edit Note
+          note-form(note="note")
+            input(ng-click="notes.update(note); editing = false" type="submit")
+          
+          
+        

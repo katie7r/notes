@@ -1,0 +1,21 @@
+(function() {
+    'use strict';
+
+    angular
+        .module('app')
+        .directive('noteForm', noteForm);
+
+        // noteForm.$inject = [''];
+
+        function noteForm() {
+          return {
+            restrict: 'E',
+            scope: {
+              note: '='
+            },
+            templateUrl: "<%= asset_path('pages/_form.html.slim') %>",
+            transclude: true
+          }
+        }
+
+})();

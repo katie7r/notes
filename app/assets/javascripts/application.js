@@ -15,5 +15,6 @@
 //= require angular-resource/angular-resource
 //= require angularjs-rails-resource/angularjs-rails-resource
 //= require angular/app.js.erb
-//= require angular/notes.controller.js
-//= require angular/notes.service.js
+//= require angular/controller.js
+//= require angular/directive.js
+//= require angular/service.js

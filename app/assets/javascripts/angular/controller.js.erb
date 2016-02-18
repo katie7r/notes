@@ -21,6 +21,7 @@
           }
 
           function create(note) {
+            // validation
             new NoteService(note).$save().then(function(note) {
               vm.all.push(note);
             });

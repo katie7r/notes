@@ -1,0 +1,78 @@
+@mixin boxtop($color) {
+  border-top: 6px solid $color;
+
+  &:focus,
+  &:hover,
+  &.active {
+    background-color: tint($color, 85%); // Previously transparentize($color-from-list, 0.9)
+  }
+}
+
+.flexboxes, #new, #index {
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $base-font-color: $dark-gray !default;
+  $flexbox-border-color: $light-gray;
+  $flexbox-border: 1px solid $flexbox-border-color;
+  $flexbox-background: $base-background-color; // Previously lighten($light-gray, 10%)
+  $flexbox-gutter: 0.4em;
+  $flexbox-width: 18em;
+  $flexbox-color: transparentize($base-font-color, 0.3);
+  $boxtop-colors:
+    #FF6347,
+    #FAB05C,
+    #E3D743,
+    #ABEE77,
+    #72BFBF,
+    #92B1E3,
+    #AE809E;
+    // #CCC
+
+    @include clearfix;
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(stretch);
+    @include flex-wrap(wrap);
+    clear: both;
+    text-align: center;
+
+  .flexbox {
+    @include transition (all 0.2s ease-in-out);
+    @include flex(2 2 15em);
+    @include align-self(stretch);
+    background: $flexbox-background;
+    border-radius: $base-border-radius;
+    box-shadow: inset 0 0 1px $flexbox-border-color, 0 2px 4px darken($base-background-color, 10%);
+    display: block;
+    margin: $flexbox-gutter;
+    padding: 2em 2em 3em 2em;
+    text-decoration: none;
+
+    @for $i from 1 through length($boxtop-colors) {
+      &:nth-child(#{length($boxtop-colors)}n+#{$i}) {
+        @include boxtop(nth($boxtop-colors, $i));
+      }
+    }
+
+    img {
+      display: block;
+      height: 3em;
+      margin: 0 auto 1em;
+      opacity: 0.4;
+    }
+
+    .title {
+      color: $flexbox-color;
+      font-size: 1.2em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      color: transparentize($flexbox-color, 0.1);
+      line-height: 1.5em;
+      margin: auto;
+    }
+  }
+}
