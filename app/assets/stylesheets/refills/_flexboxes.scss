@@ -1,10 +1,14 @@
 @mixin boxtop($color) {
   border-top: 6px solid $color;
+  background-color: transparentize($color, 0.8);
 
   &:focus,
-  &:hover,
+  &:hover {
+    background-color: transparentize($color, 0.65);
+  }
+
   &.active {
-    background-color: tint($color, 85%); // Previously transparentize($color-from-list, 0.9)
+    background-color: transparentize($color, 0.95);
   }
 }
 
@@ -54,6 +58,10 @@
       &:nth-child(#{length($boxtop-colors)}n+#{$i}) {
         @include boxtop(nth($boxtop-colors, $i));
       }
+    }
+
+    &.grey {
+      @include boxtop(#CCC);
     }
 
     img {

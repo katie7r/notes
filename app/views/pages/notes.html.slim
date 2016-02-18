@@ -1,24 +1,14 @@
-div(ng-controller="NotesController as notes")
+.box(ng-controller="NotesController as notes")
   h1 Notes
 
   #new
-    h2 New Note
-    note-form(note="newNote")
-      input(ng-click="notes.create(newNote)" type="submit")
-
-    / label(for="title") Title (required)
-    / input(ng-model="newNote.title" ng-required="true" name="title" type="text")
-    / 
-    / label(for="category") Category (optional)
-    / input(ng-model="newNote.category" ng-required="false" name="category" type="text")
-    / 
-    / label(for="details") Details (optional)
-    / input(ng-model="newNote.details" ng-required="false" name="details" type="text")
-    / 
-    / label(for="text") Text (required)
-    / textarea(ng-model="newNote.text" ng-required="true" name="text" type="text")
-    / 
-    / input(ng-click="notes.create(newNote)" type="submit")
+    .flexbox.grey(ng-init="creating = false" ng-click="creating = !creating" ng-class="{active: creating}")
+      div(ng-show="!creating")
+        h2 Click to Create Note
+      div(ng-show="creating")
+        h2 New Note
+        note-form(note="newNote")
+          input(ng-click="notes.create(newNote)" type="submit")
     
   ul#index
     li.note.flexbox(ng-repeat="note in notes.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")

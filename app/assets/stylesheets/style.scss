@@ -1,0 +1,21 @@
+.box {
+  @include outer-container;
+  @include span-columns(8);
+  @include shift(2);
+
+  word-break: break-all;
+}
+
+h1 {
+  font-size: 7em;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  width: auto;
+}
+
+#new {
+  .flexbox {
+    padding: 1.75em 1em 1em;
+  }
+}
