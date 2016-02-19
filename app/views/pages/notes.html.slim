@@ -24,6 +24,7 @@
           h2 Edit Note
           note-form(note="note")
             input(ng-click="notes.update(note); editing = false" type="submit")
+            button(ng-click="notes.destroy(note); editing = false") Delete
           
           
         

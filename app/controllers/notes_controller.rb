@@ -2,31 +2,51 @@ class NotesController < ApplicationController
   include Clearance::Controller
 
   # before_action :require_login
+  before_action :set_note, only: [:update, :destroy]
   skip_before_action :verify_authenticity_token
 
-  # GET /v1/notes
+  # GET /notes
   def index
+    # @notes = current_user.notes.all
     @notes = Note.all
     render json: @notes.to_json
   end
 
-  # POST /v1/notes
+  # POST /notes
   def create
     # @note = current_user.notes.build(note_params)
     @note = Note.new(note_params)
-    @note.save!
-    render json: @note
+    if @note.save
+      render json: @note
+    else
+      # render # error
+    end
   end
 
-  # PUT /v1/notes/:id
+  # PUT /notes/:id
   def update
+    if @note.update(note_params)
+      render json: @note
+    else
+      # render # error
+    end
   end
 
-  # DELETE /v1/notes/:id
+  # DELETE /notes/:id
   def destroy
+    if @note.destroy
+      head :no_content
+    else
+      # render # error
+    end
   end
 
   private
+
+    def set_note
+      # @note = current_user.notes.find(params[:id])
+      @note = Note.find(params[:id])
+    end
 
     def note_params
       params.require(:note).permit(:category, :details, :text, :title)

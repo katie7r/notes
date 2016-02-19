@@ -8,7 +8,7 @@
         NoteService.$inject = ['$resource'];
 
         function NoteService($resource) {
-          return $resource('/notes/:noteId', { noteId: '@id' },
+          return $resource('/notes/:id', { id: '@id' },
           {
             'update': { method: 'PUT' }
           });

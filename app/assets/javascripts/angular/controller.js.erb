@@ -16,32 +16,42 @@
 
           vm.all = vm.index();
 
+          vm.noteData = noteData;
+
           function index() {
             return NoteService.query();
           }
 
           function create(note) {
             // validation
-            new NoteService(note).$save().then(function(note) {
-              vm.all.push(note);
+            new NoteService(note).$save().then(function(savedNote) {
+              vm.all.push(savedNote);
             });
           }
 
           function update(note) {
-            return NoteService.update({ id: note.id }, note);
+            var noteData = vm.noteData(note);
+            new NoteService(noteData).$update({ id: note.id }, noteData).then(function(savedNote) {
+              console.log(savedNote);
+            });
           }
-          // function update(noteData) {
-          //   var note = new NoteService(noteData);
-          //   return NoteService.update({ id: note.id }, note);
-          // }
 
           function destroy(note) {
-            return NoteService(note).delete({ id: note.id });
+            new NoteService(noteData).$delete({ id: note.id }).then(function(response) {
+              // if success
+              var index = vm.all.indexOf(note);
+              vm.all.splice(index, 1);
+            });
           }
-          // function destroy(noteData) {
-          //   var note = new NoteService(noteData);
-          //   return NoteService(note).delete({ id: note.id });
-          // }
+        }
+
+        function noteData(note) {
+          return {
+            'title': note.title,
+            'category': note.category,
+            'details': note.details,
+            'text': note.text
+          };
         }
 
 })();
