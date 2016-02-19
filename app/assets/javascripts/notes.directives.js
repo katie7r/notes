@@ -11,7 +11,7 @@
             scope: {
               note: '='
             },
-            templateUrl: "<%= asset_path('pages/_form.html.slim') %>",
+            templateUrl: 'form.html',
             transclude: true
           }
         }

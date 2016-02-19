@@ -2,8 +2,9 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "angular": "latest",
-    "angular-ui-router": "latest",
     "angular-resource": "latest",
+    "angular-route": "latest",
+    "angular-ui-router": "latest",
     "angularjs-rails-resource": "latest"
   }
 }

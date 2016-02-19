@@ -1,4 +1,4 @@
-.box {
+#box {
   @include outer-container;
   @include span-columns(8);
   @include shift(2);
@@ -19,4 +19,8 @@ h1 {
   .flexbox {
     padding: 1.75em 1em 1em;
   }
+}
+
+footer {
+
 }

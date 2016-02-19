@@ -11,10 +11,13 @@
 // about supported directives.
 //
 //= require angular/angular
-//= require angular-ui-router/release/angular-ui-router
 //= require angular-resource/angular-resource
+//= require angular-route/angular-route
+//= require angular-ui-router/release/angular-ui-router
 //= require angularjs-rails-resource/angularjs-rails-resource
-//= require angular/app.js.erb
-//= require angular/controller.js
-//= require angular/directive.js
-//= require angular/service.js
+//= require angular-rails-templates
+//= require notes.app.js
+//= require notes.controllers.js
+//= require notes.directives.js
+//= require notes.services.js
+//= require_tree ./templates

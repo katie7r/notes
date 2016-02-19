@@ -1,5 +1,4 @@
-.box(ng-controller="NotesController as notes")
-  h1 Notes
+#notes(ng-controller="NotesController as notes")
 
   #new
     .flexbox.grey(ng-init="creating = false" ng-click="creating = !creating" ng-class="{active: creating}")
@@ -9,7 +8,7 @@
         h2 New Note
         note-form(note="newNote")
           input(ng-click="notes.create(newNote)" type="submit")
-    
+
   ul#index
     li.note.flexbox(ng-repeat="note in notes.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
 
@@ -25,6 +24,3 @@
           note-form(note="note")
             input(ng-click="notes.update(note); editing = false" type="submit")
             button(ng-click="notes.destroy(note); editing = false") Delete
-          
-          
-        

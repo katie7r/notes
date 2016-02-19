@@ -1,0 +1,15 @@
+<form>
+  <label for="title">Title (required)</label>
+  <input ng-model="note.title" ng-required="true" name="title" type="text" />
+
+  <label for="category">Category (optional)</label>
+  <input ng-model="note.category" ng-required="false" name="category" type="text" />
+
+  <label for="details">Details (optional)</label>
+  <input ng-model="note.details" ng-required="false" name="details" type="text" />
+
+  <label for="text">Text (required)</label>
+  <textarea ng-model="note.text" ng-required="true" name="text" type="text"></textarea>
+
+  <div class="submit" ng-transclude>
+</form>
