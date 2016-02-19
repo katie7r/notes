@@ -1,21 +1,19 @@
 class NotesController < ApplicationController
   include Clearance::Controller
 
-  # before_action :require_login
+  before_action :require_login
   before_action :set_note, only: [:update, :destroy]
   skip_before_action :verify_authenticity_token
 
   # GET /notes
   def index
-    # @notes = current_user.notes.all
-    @notes = Note.all
+    @notes = current_user.notes.all
     render json: @notes.to_json
   end
 
   # POST /notes
   def create
-    # @note = current_user.notes.build(note_params)
-    @note = Note.new(note_params)
+    @note = current_user.notes.build(note_params)
     if @note.save
       render json: @note
     else
@@ -44,8 +42,7 @@ class NotesController < ApplicationController
   private
 
     def set_note
-      # @note = current_user.notes.find(params[:id])
-      @note = Note.find(params[:id])
+      @note = current_user.notes.find(params[:id])
     end
 
     def note_params
