@@ -1,7 +1,7 @@
 #notes(ng-controller="NotesController as notes")
 
   #new
-    .flexbox.grey(ng-init="creating = false" ng-click="creating = !creating" ng-class="{active: creating}")
+    .flexbox.dark-grey(ng-init="creating = false" ng-click="creating = !creating" ng-class="{active: creating}")
       div(ng-show="!creating")
         h2 Click to Create Note
       div(ng-show="creating")
@@ -9,18 +9,26 @@
         note-form(note="newNote")
           input(ng-click="notes.create(newNote)" type="submit")
 
+  #filters
+    / .flexbox.blank(ng-repeat="field in ['category', 'details', 'all']")
+    /   label(for="filter-{{ field }}") Filter {{ field | titleize }}
+    /   input(ng-model="filter[field]" id="filter-{{ field }}" type="text")
+    .flexbox.blank
+      label(for="filter-all") Search
+      input(ng-model="filter.all" id="filter-all" type="text")
+
   ul#index
-    li.note.flexbox(ng-repeat="note in notes.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
+    li.note.flexbox(ng-repeat="note in notes.all | filter:filter.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
 
-        .show(ng-show="!editing")
-          hgroup
-            h2 {{ note.title }}
-            h3 {{ note.category }}
-            small {{ note.details }}
-          p {{ note.text }}
+      .show(ng-show="!editing")
+        hgroup
+          h2 {{ note.title }}
+          h3 {{ note.category }}
+          small {{ note.details }}
+        p {{ note.text }}
 
-        .edit(ng-show="editing")
-          h2 Edit Note
-          note-form(note="note")
-            input(ng-click="notes.update(note); editing = false" type="submit")
-            button(ng-click="notes.destroy(note); editing = false") Delete
+      .edit(ng-show="editing")
+        h2 Edit Note
+        note-form(note="note")
+          input(ng-click="notes.update(note); editing = false" type="submit")
+          button(ng-click="notes.destroy(note); editing = false") Delete

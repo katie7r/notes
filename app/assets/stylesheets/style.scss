@@ -1,3 +1,5 @@
+body {}
+
 #box {
   @include outer-container;
   @include span-columns(8);
@@ -19,6 +21,18 @@ h1 {
   .flexbox {
     padding: 1.75em 1em 1em;
   }
+}
+
+#filters {
+  .flexbox {
+
+  }
+}
+
+fieldset {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 footer {

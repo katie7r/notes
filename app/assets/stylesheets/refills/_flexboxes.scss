@@ -1,18 +1,23 @@
-@mixin boxtop($color) {
+@mixin boxtop-with-transparency($color, $base-transparency) {
   border-top: 6px solid $color;
-  background-color: transparentize($color, 0.8);
+  background-color: transparentize($color, $base-transparency);
 
   &:focus,
   &:hover {
-    background-color: transparentize($color, 0.65);
+    background-color: transparentize($color, $base-transparency - 0.15);
   }
 
   &.active {
-    background-color: transparentize($color, 0.95);
+    background-color: transparentize($color, $base-transparency + 0.15);
   }
 }
 
-.flexboxes, #new, #index {
+@mixin boxtop($color) {
+  @include boxtop-with-transparency($color, 0.8);
+}
+
+
+.flexboxes, #new, #index, #filters {
   $base-border-radius: 3px !default;
   $base-background-color: white !default;
   $dark-gray: #333 !default;
@@ -46,22 +51,30 @@
     @include transition (all 0.2s ease-in-out);
     @include flex(2 2 15em);
     @include align-self(stretch);
-    background: $flexbox-background;
-    border-radius: $base-border-radius;
-    box-shadow: inset 0 0 1px $flexbox-border-color, 0 2px 4px darken($base-background-color, 10%);
     display: block;
     margin: $flexbox-gutter;
     padding: 2em 2em 3em 2em;
     text-decoration: none;
 
-    @for $i from 1 through length($boxtop-colors) {
-      &:nth-child(#{length($boxtop-colors)}n+#{$i}) {
-        @include boxtop(nth($boxtop-colors, $i));
-      }
-    }
+    &:not(.blank) {
+      background: $flexbox-background;
+      border-radius: $base-border-radius;
+      box-shadow: inset 0 0 1px $flexbox-border-color, 0 2px 4px darken($base-background-color, 10%);
 
-    &.grey {
-      @include boxtop(#CCC);
+      @for $i from 1 through length($boxtop-colors) {
+        &:nth-child(#{length($boxtop-colors)}n+#{$i}) {
+          @include boxtop(nth($boxtop-colors, $i));
+        }
+      }
+
+      &.grey {
+        @include boxtop(#CCC);
+      }
+
+      &.dark-grey {
+        @include boxtop-with-transparency(#888, 0.45);
+        color: #FFF;
+      }
     }
 
     img {

@@ -19,5 +19,6 @@
 //= require notes.app.js
 //= require notes.controllers.js
 //= require notes.directives.js
+//= require notes.filters.js
 //= require notes.services.js
 //= require_tree ./templates
