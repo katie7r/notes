@@ -8,14 +8,12 @@
         h2 New Note
         note-form(note="newNote")
           input(ng-click="notes.create(newNote)" type="submit")
+          a.warning(ng-click="creating = false") Cancel
 
   #filters
-    / .flexbox.blank(ng-repeat="field in ['category', 'details', 'all']")
-    /   label(for="filter-{{ field }}") Filter {{ field | titleize }}
-    /   input(ng-model="filter[field]" id="filter-{{ field }}" type="text")
     .flexbox.blank
-      label(for="filter-all") Search (e.g., 'cats', 'pigeon genetics', 'd:ideas d:ponies', 'title:projects body:secretsssss', etc.)
-      input(ng-model="notes.filterInput" id="filter-all" type="text")
+      label(for="filter-all") Search
+      input(ng-model="notes.filterInput" id="filter-all" type="text" placeholder="e.g., cats, game ideas, category:todo, d:detail1 d:detail2, etc.")
       button(ng-click="notes.prefilter(); notes.filtering = true") Search
 
   ul#index
@@ -32,4 +30,5 @@
         h2 Edit Note
         note-form(note="note")
           input(ng-click="notes.update(note); editing = false" type="submit")
-          button(ng-click="notes.destroy(note); editing = false") Delete
+          a.warning(ng-click="editing = false") Cancel  
+          a.danger(ng-click="notes.destroy(note); editing = false") Delete
