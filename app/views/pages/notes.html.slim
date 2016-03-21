@@ -14,11 +14,12 @@
     /   label(for="filter-{{ field }}") Filter {{ field | titleize }}
     /   input(ng-model="filter[field]" id="filter-{{ field }}" type="text")
     .flexbox.blank
-      label(for="filter-all") Search
-      input(ng-model="filter.all" id="filter-all" type="text")
+      label(for="filter-all") Search (e.g., 'cats', 'pigeon genetics', 'd:ideas d:ponies', 'title:projects body:secretsssss', etc.)
+      input(ng-model="notes.filterInput" id="filter-all" type="text")
+      button(ng-click="notes.prefilter(); notes.filtering = true") Search
 
   ul#index
-    li.note.flexbox(ng-repeat="note in notes.all | filter:filter.all" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
+    li.note.flexbox(ng-repeat="note in notes.all | filter: notes.filter" ng-init="editing = false" ng-click="editing = !editing" ng-class="{active: editing}")
 
       .show(ng-show="!editing")
         hgroup

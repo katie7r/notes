@@ -74,6 +74,10 @@
       &.dark-grey {
         @include boxtop-with-transparency(#888, 0.45);
         color: #FFF;
+
+        input:not([type=submit]) {
+          color: $base-font-color;
+        }
       }
     }
 
