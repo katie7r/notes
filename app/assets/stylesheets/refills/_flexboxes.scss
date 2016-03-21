@@ -75,7 +75,7 @@
         @include boxtop-with-transparency(#888, 0.45);
         color: #FFF;
 
-        input:not([type=submit]) {
+        input:not([type=submit]), textarea {
           color: $base-font-color;
         }
       }
